@@ -1,4 +1,3 @@
-import './App.css'
 import Button from '@mui/material/Button'
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm'
 import Icon from '@mui/material/Icon'
