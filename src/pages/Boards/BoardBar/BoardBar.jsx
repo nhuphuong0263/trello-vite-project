@@ -36,10 +36,9 @@ function BoardBar() {
       alignItems: 'center',
       justifyContent: 'space-between',
       gap: 2,
+      overflowX: 'auto'
       // paddingX: 2,
       // px: 2,
-      overflowX: 'auto',
-      borderBottom: '1px solid #ff5721'
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Chip 

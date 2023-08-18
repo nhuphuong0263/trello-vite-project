@@ -1,8 +1,8 @@
 import Container from '@mui/material/Container'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import AppBar from '~/components/AppBar'
-import BoardBar from './BoardBar'
-import BoardContent from './BoardContent'
+import AppBar from '~/components/Appbar/Appbar'
+import BoardBar from './BoardBar/BoardBar'
+import BoardContent from './BoardContent/BoardContent'
 
 export default function Board() {
   useMediaQuery('(prefers-color-scheme: dark)')
