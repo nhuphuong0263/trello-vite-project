@@ -13,7 +13,9 @@ import { AddCard, ContentCopy, ContentPaste, Cloud, DeleteForever, DragHandle, E
 
 import ListCards from './ListCards/ListCards'
 
-function Column() {
+import { mapOrder } from '~/utils/sort'
+
+function Column({ column }) {
   const [anchorEl, setAnchorEl] = useState(null)
 
   const open = Boolean(anchorEl)
@@ -21,6 +23,8 @@ function Column() {
   const handleClick = (event) => setAnchorEl(event.currentTarget)
 
   const handleClose = () => setAnchorEl(null) 
+
+  const orderedCards = mapOrder(column.cards, column.cardOrderIds, '_id')
 
   return (
     <Box 
@@ -38,7 +42,7 @@ function Column() {
         p: 4,
         display: 'flex'
       }}>
-        <Typography sx={{ fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' }}>Column Title</Typography>
+        <Typography sx={{ fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' }}>{column?.title}</Typography>
         <Box>
           <Tooltip title='More action'>
             <ExpandMore sx={{ color: 'text.primary', cursor: 'pointer' }} 
@@ -87,7 +91,7 @@ function Column() {
         </Box>
       </Box>
       
-      <ListCards />
+      <ListCards cards={orderedCards} />
 
       <Box sx={{
         height: (theme) => theme.trello.columnHeaderHeight,

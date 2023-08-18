@@ -8,40 +8,26 @@ import Typography from '@mui/material/Typography'
 
 import { Group, ModeComment, Attachment } from '@mui/icons-material'
 
-function Card({ temporaryHidenMedia }) {
-  if (temporaryHidenMedia) {
-    return (
-      <MuiCard sx={{ 
-        cursor: 'pointer', 
-        boxShadow: '0 1px 1px rgba(0, 0 , 0 , 0.2)', 
-        overflow: 'visible' 
-      }}>
-        <CardContent sx={{ p: 2, '&:last-child': { p: 2 } }}>
-          <Typography>Card test 01</Typography>
-        </CardContent>
-      </MuiCard>
-    ) 
+function Card({ card }) {
+  const shouldShowCardAction = () => {
+    return !!card?.memberIds?.length || !!card?.comments?.length || !!card?.attachments?.length
   }
-
   return (
     <MuiCard sx={{ 
       cursor: 'pointer', 
       boxShadow: '0 1px 1px rgba(0, 0 , 0 , 0.2)', 
       overflow: 'visible' 
     }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="https://picsum.photos/200"
-        title="green iguana"
-      />
+      {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} title={card?.title}
+      />}
       <CardContent sx={{ p: 2, '&:last-child': { p: 2 } }}>
-        <Typography>BarleyDev Frontend</Typography>
+        <Typography>{card?.title}</Typography>
       </CardContent>
-      <CardActions sx={{ p: '0 4px 6px 4px' }}>
-        <Button size="small" startIcon={<Group />}>20</Button>
-        <Button size="small" startIcon={<ModeComment />}>15</Button>
-        <Button size="small" startIcon={<Attachment />}>10</Button>
-      </CardActions>
+      {shouldShowCardAction() && <CardActions sx={{ p: '0 4px 6px 4px' }}>
+        {!!card?.memberIds?.length && <Button size="small" startIcon={<Group />}>{card?.memberIds?.length}</Button>}
+        {!!card?.comments?.length && <Button size="small" startIcon={<ModeComment />}>{card?.comments?.length}</Button>}
+        {!!card?.attachments?.length && <Button size="small" startIcon={<Attachment />}>{card?.attachments?.length}</Button>}
+      </CardActions>}
     </MuiCard>
   )
 }

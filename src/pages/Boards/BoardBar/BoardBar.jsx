@@ -12,6 +12,8 @@ import FilterListIcon from '@mui/icons-material/FilterList'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import { Tooltip } from '@mui/material'
 
+import { capitalizeFirstLetter } from '~/utils/formatters'
+
 const MENU_STYLES = {
   color: '#fff', 
   bgcolor: 'transparent', 
@@ -26,7 +28,7 @@ const MENU_STYLES = {
   }
 }
 
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <Box px={2} sx={{
       backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#34495e' : '#4faae6',
@@ -44,13 +46,13 @@ function BoardBar() {
         <Chip 
           sx={MENU_STYLES} 
           icon={<DashboardIcon />} 
-          label="BarleyDev Mern stack" 
+          label={board?.title} 
           clickable 
         />
         <Chip 
           sx={MENU_STYLES} 
           icon={<VpnLockIcon />} 
-          label="Public/Private workspace" 
+          label={`${capitalizeFirstLetter(board?.type)} workspace`}
           clickable 
         />
         <Chip 
